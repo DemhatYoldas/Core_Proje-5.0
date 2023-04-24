@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.Abstract
+namespace BusinnesLayer.Abstract
 {
-    public interface IGenericDal<T> where T : class 
+    public interface IGenericService<T>
     {
-        void Insert(T t);
-        void Delete(T t);
-        void Update(T t);
+        void TAdd(T t);
+        void TDelete(T t);
+        void TUpdate(T t);
         List<T> GetList();
         T GetByID(int id);
     }
