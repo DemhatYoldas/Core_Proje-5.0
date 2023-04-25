@@ -1,4 +1,6 @@
 ﻿using BusinnesLayer.Abstract;
+using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +12,36 @@ namespace BusinnesLayer.Concrete
 {
     public class ServiceManager : IGenericService<Service>
     {
+        IServiceDal _serviceDal;
+
+        public ServiceManager(IServiceDal serviceDal)
+        {
+            _serviceDal = serviceDal;
+        }
+
         public Service GetByID(int id)
         {
-            throw new NotImplementedException();
+            return _serviceDal.GetByID(id);
         }
 
         public List<Service> GetList()
         {
-            throw new NotImplementedException();
+            return _serviceDal.GetList();
         }
 
         public void TAdd(Service t)
         {
-            throw new NotImplementedException();
+            _serviceDal.Insert(t);
         }
 
         public void TDelete(Service t)
         {
-            throw new NotImplementedException();
+            _serviceDal.Delete(t);
         }
 
         public void TUpdate(Service t)
         {
-            throw new NotImplementedException();
+            _serviceDal.Update(t);
         }
     }
 }

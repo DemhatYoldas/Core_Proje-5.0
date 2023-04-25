@@ -1,4 +1,5 @@
 ﻿using BusinnesLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,36 @@ namespace BusinnesLayer.Concrete
 {
     public class FeatureManager : IGenericService<Feature>
     {
+        IFeatureDal _featureDal;
+
+        public FeatureManager(IFeatureDal featureDal)
+        {
+            _featureDal = featureDal;
+        }
+
         public Feature GetByID(int id)
         {
-            throw new NotImplementedException();
+           return _featureDal.GetByID(id);
         }
 
         public List<Feature> GetList()
         {
-            throw new NotImplementedException();
+           return _featureDal.GetList();
         }
 
         public void TAdd(Feature t)
         {
-            throw new NotImplementedException();
+           _featureDal.Insert(t);
         }
 
         public void TDelete(Feature t)
         {
-            throw new NotImplementedException();
+            _featureDal.Delete(t);
         }
 
         public void TUpdate(Feature t)
         {
-            throw new NotImplementedException();
+           _featureDal.Update(t);
         }
     }
 }
