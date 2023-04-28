@@ -1,4 +1,5 @@
 ﻿using BusinnesLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,36 @@ namespace BusinnesLayer.Concrete
 {
     public class SkillManager : IGenericService<Skill>
     {
+        private EfSkillDal _efSkillDal;
+
+        public SkillManager(EfSkillDal efSkillDal)
+        {
+            _efSkillDal = efSkillDal;
+        }
+
         public Skill GetByID(int id)
         {
-            throw new NotImplementedException();
+            return _efSkillDal.GetByID(id);
         }
 
         public List<Skill> GetList()
         {
-            throw new NotImplementedException();
+            return _efSkillDal.GetList();
         }
 
         public void TAdd(Skill t)
         {
-            throw new NotImplementedException();
+            _efSkillDal.Insert(t);
         }
 
         public void TDelete(Skill t)
         {
-            throw new NotImplementedException();
+            _efSkillDal.Delete(t);
         }
 
         public void TUpdate(Skill t)
         {
-            throw new NotImplementedException();
+            _efSkillDal.Update(t);
         }
     }
 }
