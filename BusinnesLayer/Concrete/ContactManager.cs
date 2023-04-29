@@ -1,4 +1,5 @@
 ﻿using BusinnesLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,35 @@ namespace BusinnesLayer.Concrete
 {
     public class ContactManager : IGenericService<Contact>
     {
+        IContactDal _contactDal;
+        public ContactManager(IContactDal contactDal)
+        {
+            _contactDal = contactDal;   
+        }
+
         public Contact GetByID(int id)
         {
-            throw new NotImplementedException();
+            return _contactDal.GetByID(id);
         }
 
         public List<Contact> GetList()
         {
-            throw new NotImplementedException();
+            return _contactDal.GetList();
         }
 
         public void TAdd(Contact t)
         {
-            throw new NotImplementedException();
+            _contactDal.Insert(t);
         }
 
         public void TDelete(Contact t)
         {
-            throw new NotImplementedException();
+            _contactDal.Delete(t);
         }
 
         public void TUpdate(Contact t)
         {
-            throw new NotImplementedException();
+            _contactDal.Update(t);
         }
     }
 }

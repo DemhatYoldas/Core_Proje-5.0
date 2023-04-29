@@ -1,4 +1,5 @@
 ﻿using BusinnesLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,34 @@ namespace BusinnesLayer.Concrete
 {
     public class TestimonialManager : IGenericService<Testimonial>
     {
+        ITestimonialDal _testimonialDal;
+        public TestimonialManager(ITestimonialDal testimonialDal)
+        {
+            _testimonialDal = testimonialDal;
+        }
         public Testimonial GetByID(int id)
         {
-            throw new NotImplementedException();
+            return _testimonialDal.GetByID(id);
         }
 
         public List<Testimonial> GetList()
         {
-            throw new NotImplementedException();
+            return _testimonialDal.GetList();
         }
 
         public void TAdd(Testimonial t)
         {
-            throw new NotImplementedException();
+            _testimonialDal.Insert(t);
         }
 
         public void TDelete(Testimonial t)
         {
-            throw new NotImplementedException();
+            _testimonialDal.Delete(t);
         }
 
         public void TUpdate(Testimonial t)
         {
-            throw new NotImplementedException();
+            _testimonialDal.Update(t);
         }
     }
 }

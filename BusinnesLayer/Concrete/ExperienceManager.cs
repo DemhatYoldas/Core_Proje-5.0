@@ -1,4 +1,5 @@
 ﻿using BusinnesLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,35 @@ namespace BusinnesLayer.Concrete
 {
     public class ExperienceManager : IGenericService<Experience>
     {
+        IExperienceDal _experienceDal;
+        public ExperienceManager(IExperienceDal experienceDal) 
+        {
+            _experienceDal = experienceDal;
+        }
+
         public Experience GetByID(int id)
         {
-            throw new NotImplementedException();
+            return _experienceDal.GetByID(id);
         }
 
         public List<Experience> GetList()
         {
-            throw new NotImplementedException();
+           return _experienceDal.GetList();
         }
 
         public void TAdd(Experience t)
         {
-            throw new NotImplementedException();
+            _experienceDal.Insert(t);
         }
 
         public void TDelete(Experience t)
         {
-            throw new NotImplementedException();
+           _experienceDal.Delete(t);
         }
 
         public void TUpdate(Experience t)
         {
-            throw new NotImplementedException();
+            _experienceDal.Update(t);
         }
     }
 }
